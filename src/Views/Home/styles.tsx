@@ -14,11 +14,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     overflow: "hidden",
     overflowX: "scroll",
-
+    padding: "0px 2rem",
+    scrollBehavior: "smooth",
     "&> div": {
       marginLeft: "calc(1vw + 2.5rem)",
       marginRight: "calc(1vw + 2.5rem)",
     },
+  },
+  subtitleWrap: {
+    position: "absolute",
+    top: "6%",
+    letterSpacing: "4px",
+    color: theme.palette.customColors?.black,
   },
 }));
 

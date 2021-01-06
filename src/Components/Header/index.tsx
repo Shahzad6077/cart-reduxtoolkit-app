@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 const Header: FC = () => {
   const classes = useStyles();
   return (
-    <Container className={classes.root} maxWidth="lg">
+    <Container className={classes.root} maxWidth="xl">
       <Link to="/" className={classes.brand}>
         <Typography variant="h4" color="secondary">
           S

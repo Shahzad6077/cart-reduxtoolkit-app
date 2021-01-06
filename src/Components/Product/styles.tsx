@@ -18,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "90%",
-
+    height: "75%",
+    [theme.breakpoints.down("sm")]: {
+      height: "90%",
+    },
     "& img": {
       display: "block",
       width: "80%",
@@ -31,19 +33,20 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     left: 0,
     right: 0,
-    top: "20%",
+    top: 0,
     borderRadius: "34px 34px 0px 0px",
     zIndex: -1,
     scale: 0,
     opacity: 0,
+    backgroundColor: "transparent",
   },
 
   cartOption: {
-    width: "80%",
+    width: "60%",
     display: "flex",
     justifyContent: "space-between",
-    marginBottom: "-40px",
-    marginTop: "40px",
+    marginBottom: "-20px",
+    marginTop: "20px",
     opacity: 0,
   },
 }));

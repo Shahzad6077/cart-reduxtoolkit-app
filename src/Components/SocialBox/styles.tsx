@@ -8,13 +8,16 @@ const useStyles = makeStyles((theme) => ({
     width: "100px",
     height: "22px",
 
-    bottom: "8%",
-    right: "8%",
-
+    bottom: "5%",
+    right: "3%",
+    [theme.breakpoints.down("md")]: {
+      right: "10%",
+    },
     "& svg": {
       fill: "#3c3c3d",
       width: "20px",
       height: "20px",
+      cursor: "pointer",
     },
   },
 }));

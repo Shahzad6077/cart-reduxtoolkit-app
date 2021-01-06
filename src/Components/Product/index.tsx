@@ -1,53 +1,22 @@
-import { FC } from "react";
-import { motion } from "framer-motion";
-import {
-  Container,
-  Typography,
-  Button,
-  Grid,
-  withStyles,
-} from "@material-ui/core";
+import { FC, useState } from "react";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import { Typography } from "@material-ui/core";
 import { ReactComponent as PlusIcon } from "./../../Assets/plus.svg";
 import useStyles from "./styles";
 import { ProductItem } from "./../../Types/store";
 import { useAppDispatch } from "../../Store/store";
 import { addCarItem } from "../../Store/Slices/cart";
-const uri =
-  "https://firebasestorage.googleapis.com/v0/b/mystore339.appspot.com/o/fuel-ex-axa-0.png?alt=media";
-//
+import {
+  wrapperVarients,
+  animerVarients,
+  imgVarients,
+  cartOptionVarients,
+} from "./Motion";
+import CartButton from "./../CartButton";
+import ColorPlatte from "./../ColorPallate";
+
 interface Props extends ProductItem {}
 
-const bgAnimer = {
-  rest: {
-    scale: 0.3,
-    opacity: 0,
-    backgroundColor: "transparent",
-  },
-  hover: {
-    opacity: 1,
-    scale: 1,
-    backgroundColor: "var(--blue1) !important",
-  },
-};
-
-const imgMotion = {
-  rest: {
-    scale: 1,
-    width: "80%",
-  },
-  hover: {
-    scale: 1.3,
-    width: "100%",
-  },
-};
-const variants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-  },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
-  },
-};
 const Product: FC<Props> = ({
   imageUrl,
   price,
@@ -58,7 +27,7 @@ const Product: FC<Props> = ({
 }) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-
+  const [curColorIndex, setCurColorIndex] = useState<number>(0);
   const onAddBtn = () => {
     dispatch(
       addCarItem({
@@ -73,54 +42,62 @@ const Product: FC<Props> = ({
       })
     );
   };
+  const colorHandler = (index: number) => {
+    console.log(index);
+    setCurColorIndex(index);
+  };
   return (
-    <motion.div
-      //   animate="rest"
-      className={classes.productWrapper}
-      //   variants={rootMotion}
-    >
-      <motion.div
-        initial={false}
-        whileHover="hover"
-        animate="rest"
-        className={classes.imgWrapper}
-        variants={variants}
-      >
+    <AnimateSharedLayout>
+      <motion.div layout className={classes.productWrapper}>
         <motion.div
-          className={classes.bgAnimer}
-          variants={bgAnimer}
-        ></motion.div>
-        <motion.img
-          src={imageUrl[0]}
-          alt="product"
-          variants={imgMotion}
-          transition={{
-            delay: 0.4,
-          }}
-        />
-        <CartOptions price={price} onClick={onAddBtn} />
+          layout
+          initial={false}
+          whileHover="hover"
+          animate="rest"
+          className={classes.imgWrapper}
+          variants={wrapperVarients}
+        >
+          <motion.div
+            layoutId="layout-bgAnimer"
+            className={classes.bgAnimer}
+            variants={animerVarients}
+            transition={{
+              type: "tween",
+            }}
+          ></motion.div>
+          <motion.img
+            src={imageUrl[curColorIndex]}
+            alt="product"
+            variants={imgVarients}
+            transition={{
+              delay: 0.4,
+            }}
+            layoutId="layout-prodimg"
+          />
+          <ColorPlatte
+            colors={colors}
+            activeIndex={curColorIndex}
+            onClick={colorHandler}
+          />
+          <CartOptions price={price} onClick={onAddBtn} />
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </AnimateSharedLayout>
   );
 };
 
 type CartOptionType = {
   price: number;
-  onClick: (e: React.MouseEvent) => void;
+  onClick: () => void;
 };
 const CartOptions: FC<CartOptionType> = ({ price, onClick }) => {
   const classes = useStyles();
   return (
     <motion.div
+      layoutId="layout-cartOption"
       className={classes.cartOption}
       initial="rest"
-      variants={{
-        rest: { opacity: 0 },
-        hover: { opacity: 1 },
-      }}
-      transition={{
-        delay: 0.4,
-      }}
+      variants={cartOptionVarients}
     >
       <div>
         <Typography variant="subtitle2">Price</Typography>
@@ -133,26 +110,5 @@ const CartOptions: FC<CartOptionType> = ({ price, onClick }) => {
     </motion.div>
   );
 };
-
-const CartButton = withStyles({
-  root: {
-    background: "linear-gradient(45deg, #fe6b8b 30%, #FF8E53 90%)",
-    borderRadius: 8,
-    border: 0,
-    color: "white",
-    height: 52,
-    //   padding: '0 30px',
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-
-    "& svg": {
-      width: "24px",
-      height: "24px",
-      fill: "#fff",
-    },
-  },
-  label: {
-    textTransform: "capitalize",
-  },
-})(Button);
 
 export default Product;
