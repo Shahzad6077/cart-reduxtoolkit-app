@@ -5,8 +5,9 @@ import {
   makeStyles,
   Typography,
   Hidden,
+  IconButton,
 } from "@material-ui/core";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,23 +19,28 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "2px",
     borderBottom: "1px solid",
   },
-  brand: {
+  brand: (props: { isProductDetailPage: boolean }) => ({
     display: "flex",
     alignItems: "flex-end",
     textDecoration: "none",
 
     "& h4,h5": {
       lineHeight: "90%",
+      color: props.isProductDetailPage
+        ? "#fff"
+        : theme.palette.customColors?.black,
     },
     "& span": {
       maxWidth: "9px",
       maxHeight: "9px",
       width: "0.6vw",
       height: "0.6vw",
-      background: theme.palette.customColors?.black,
+      background: props.isProductDetailPage
+        ? "#fff"
+        : theme.palette.customColors?.black,
       borderRadius: "50%",
     },
-  },
+  }),
   nav: {
     display: "flex",
     "& a": {
@@ -70,8 +76,14 @@ const useStyles = makeStyles((theme) => ({
     color: `${theme.palette.customColors?.black} !important`,
   },
 }));
-const Header: FC = () => {
-  const classes = useStyles();
+
+type HeaderProps = {
+  isProductDetailPage: boolean;
+  cartHandler: () => void;
+};
+const Header: FC<HeaderProps> = ({ isProductDetailPage, cartHandler }) => {
+  const classes = useStyles({ isProductDetailPage });
+  const params = useParams();
   return (
     <Container className={classes.root} maxWidth="xl">
       <Link to="/" className={classes.brand}>
@@ -88,9 +100,7 @@ const Header: FC = () => {
           <NavLink to="/" end={true} activeClassName={classes.activeLink}>
             Home
           </NavLink>
-          <NavLink to="cart" activeClassName={classes.activeLink}>
-            Cart
-          </NavLink>
+          <IconButton>Cart</IconButton>
         </nav>
       </Hidden>
     </Container>

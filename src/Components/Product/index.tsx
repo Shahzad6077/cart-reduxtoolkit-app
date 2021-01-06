@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { motion, AnimateSharedLayout } from "framer-motion";
+import { motion } from "framer-motion";
 import { Typography } from "@material-ui/core";
 import { ReactComponent as PlusIcon } from "./../../Assets/plus.svg";
 import useStyles from "./styles";
@@ -14,7 +14,7 @@ import {
 } from "./Motion";
 import CartButton from "./../CartButton";
 import ColorPlatte from "./../ColorPallate";
-
+import { useNavigate } from "react-router-dom";
 interface Props extends ProductItem {}
 
 const Product: FC<Props> = ({
@@ -25,6 +25,7 @@ const Product: FC<Props> = ({
   id,
   title,
 }) => {
+  const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const [curColorIndex, setCurColorIndex] = useState<number>(0);
@@ -47,42 +48,42 @@ const Product: FC<Props> = ({
     setCurColorIndex(index);
   };
   return (
-    <AnimateSharedLayout>
-      <motion.div layout className={classes.productWrapper}>
+    <motion.div layout className={classes.productWrapper}>
+      <motion.div
+        layout
+        initial={false}
+        whileHover="hover"
+        animate="rest"
+        className={classes.imgWrapper}
+        variants={wrapperVarients}
+        onClick={() => navigate(`product/${id}/${curColorIndex}`)}
+      >
         <motion.div
           layout
-          initial={false}
-          whileHover="hover"
-          animate="rest"
-          className={classes.imgWrapper}
-          variants={wrapperVarients}
-        >
-          <motion.div
-            layoutId="layout-bgAnimer"
-            className={classes.bgAnimer}
-            variants={animerVarients}
-            transition={{
-              type: "tween",
-            }}
-          ></motion.div>
-          <motion.img
-            src={imageUrl[curColorIndex]}
-            alt="product"
-            variants={imgVarients}
-            transition={{
-              delay: 0.4,
-            }}
-            layoutId="layout-prodimg"
-          />
-          <ColorPlatte
-            colors={colors}
-            activeIndex={curColorIndex}
-            onClick={colorHandler}
-          />
-          <CartOptions price={price} onClick={onAddBtn} />
-        </motion.div>
+          layoutId={`layout-bgAnimer-${id}`}
+          className={classes.bgAnimer}
+          variants={animerVarients}
+          transition={{
+            type: "tween",
+          }}
+        ></motion.div>
+        <motion.img
+          src={imageUrl[curColorIndex]}
+          alt="product"
+          variants={imgVarients}
+          transition={{
+            delay: 0.4,
+          }}
+          layoutId="layout-prodimg"
+        />
+        <ColorPlatte
+          colors={colors}
+          activeIndex={curColorIndex}
+          onClick={colorHandler}
+        />
+        <CartOptions price={price} onClick={onAddBtn} />
       </motion.div>
-    </AnimateSharedLayout>
+    </motion.div>
   );
 };
 

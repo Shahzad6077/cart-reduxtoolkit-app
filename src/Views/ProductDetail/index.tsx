@@ -1,28 +1,34 @@
-import { FC } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { FC, Fragment, useEffect } from "react";
+import useStyles from "./styles";
+import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
 
-import { makeStyles, Grid, Typography } from "@material-ui/core";
+type Props = {
+  onProductDetailPage: () => void;
+};
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {},
-}));
-
-const SpacexLaunches: FC = () => {
+const ProductDetail: FC<Props> = ({ onProductDetailPage }) => {
   const classes = useStyles();
-  const param = useParams();
 
-  // const lid = param?.launchId;
-  // const isLaunchNotSelect = typeof lid === "undefined";
+  const params = useParams();
+  useEffect(() => {
+    if (params?.prodId) {
+      onProductDetailPage();
+    }
+    return () => {
+      onProductDetailPage();
+    };
+  }, []);
   return (
-    <div className={classes.wrapper}>
-      <Typography variant="h3" align="center">
-        Products
-      </Typography>
-      <Grid container>
-        <Outlet />
-      </Grid>
-    </div>
+    <Fragment>
+      <motion.div
+        layoutId={`layout-bgAnimer-${params?.prodId}`}
+        className={classes.bgAnimer}
+        onLayoutAnimationComplete={() => console.log("baby")}
+      ></motion.div>
+      <motion.div className={classes.prodDetailWrapper}></motion.div>
+    </Fragment>
   );
 };
 
-export default SpacexLaunches;
+export default ProductDetail;

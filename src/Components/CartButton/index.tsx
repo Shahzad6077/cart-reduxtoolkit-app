@@ -33,7 +33,10 @@ const CartButton: FC<CartButtonProps> = ({ children, onClick, label }) => {
       layout
       layoutId="cart-btn"
       className={classes.root}
-      onClick={onClick}
+      onClick={(e: React.MouseEvent) => {
+        e.preventDefault();
+        onClick();
+      }}
     >
       {children}
       {label && <Typography variant="subtitle2">{label}</Typography>}
