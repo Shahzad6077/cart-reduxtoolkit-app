@@ -1,3 +1,23 @@
+:root {
+  --black: #07080a;
+  --lightblack: #222326;
+  --darkgray: #3b3d45;
+  --gray: #4e5267;
+  --brown: #432f3a;
+  --smoke: #798885;
+  --blue: #5752af;
+  --red: #b02d4a;
+  --white: #dbdcdf;
+  --yellow: #413e38;
+
+  --grey: #41455a;
+  --grey1: #4c5166;
+  --grey2: #778196;
+
+  --blue1: #414a72;
+  --orange: #ff5e57;
+}
+
 body {
   margin: 0;
   font-family: "Staatliches", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -6,22 +26,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px;
+  background-color: #f7f7f7;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-a {
-  overflow: hidden;
-  position: relative;
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
-a::before {
-  content: "";
-  width: "100%";
-  height: "100%";
-  background-color: aqua;
-  display: block;
-  position: absolute;
+.layoutwrapper {
+  flex-grow: 1;
+  display: flex;
 }

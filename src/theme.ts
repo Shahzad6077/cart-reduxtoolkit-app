@@ -8,6 +8,9 @@ interface customColors {
   gray?: string;
   gray2?: string;
   smoke?: string;
+
+  blue1?: string;
+  orange?: string;
 }
 declare module "@material-ui/core/styles/createPalette" {
   interface PaletteOptions {
@@ -28,6 +31,8 @@ const themeProvider = createMuiTheme({
       smoke: "#b8fcc6",
       yellow: " #f6d586",
       gray2: "#b8b8b8",
+      blue1: "#414a72",
+      orange: "#ff5e57",
     },
     primary: { main: "#222326" },
     secondary: { main: "#392d40", contrastText: "#ececec" },
@@ -47,11 +52,24 @@ themeProvider.typography.h3 = {
 themeProvider.typography.h4 = {
   fontSize: "max(26px, min(6vw, 1.75rem))",
 };
+themeProvider.typography.h5 = {
+  fontSize: "max(22px, min(6vw, 1.25rem))",
+};
 themeProvider.typography.body1 = {
   fontSize: "max(18px, min(1.6vw, 20px))",
 };
 themeProvider.typography.body2 = {
   fontSize: "max(18px, min(1.6vw, 24px))",
+};
+themeProvider.typography.subtitle1 = {
+  color: "#fff",
+  fontFamily: "Quicksand",
+  fontSize: "max(18px, min(1.6vw, 24px))",
+};
+themeProvider.typography.subtitle2 = {
+  color: "#fff",
+  fontFamily: "Quicksand",
+  fontSize: "max(18px, min(1.6vw, 20px))",
 };
 
 export default themeProvider;

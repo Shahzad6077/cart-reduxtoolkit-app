@@ -16,11 +16,24 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     letterSpacing: "2px",
+    borderBottom: "1px solid",
   },
   brand: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-end",
     textDecoration: "none",
+
+    "& h4,h5": {
+      lineHeight: "90%",
+    },
+    "& span": {
+      maxWidth: "9px",
+      maxHeight: "9px",
+      width: "0.6vw",
+      height: "0.6vw",
+      background: theme.palette.customColors?.black,
+      borderRadius: "50%",
+    },
   },
   nav: {
     display: "flex",
@@ -30,6 +43,27 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.customColors?.gray2,
       padding: "8px",
       transition: "color 200ms linear",
+      position: "relative",
+      overflow: "hidden",
+
+      "&::before": {
+        content: "''",
+        backgroundColor: "#F4F2F6",
+        display: "block",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: -1,
+        transform: "translate(-100%, 100%)",
+        transition: "all 250ms linear",
+      },
+      "&:hover": {
+        "&::before": {
+          transform: "translate(0%, 0%)",
+        },
+      },
     },
   },
   activeLink: {
@@ -42,8 +76,12 @@ const Header: FC = () => {
     <Container className={classes.root} maxWidth="lg">
       <Link to="/" className={classes.brand}>
         <Typography variant="h4" color="secondary">
-          CYCLING
+          S
         </Typography>
+        <Typography variant="h5" color="secondary">
+          hopping
+        </Typography>
+        <span></span>
       </Link>
       <Hidden xsDown>
         <nav className={classes.nav}>

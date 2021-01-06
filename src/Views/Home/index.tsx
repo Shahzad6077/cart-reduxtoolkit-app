@@ -1,23 +1,27 @@
-import {
-  Box,
-  Container,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Box, Container, Typography } from "@material-ui/core";
 import { FC } from "react";
-import { Link } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  gridWrapper: {},
-}));
+import { useSelector } from "react-redux";
+import { Product, SocialBox } from "./../../Components";
+import useStyles from "./styles";
+import { RootState } from "../../Store/rootReducer";
 const Home: FC = () => {
   const classes = useStyles();
+  const products = useSelector(
+    ({ productReducer }: RootState) => productReducer.products
+  );
 
   return (
-    <Grid container className={classes.gridWrapper}>
-      <Typography variant="h3">Trail Bikes</Typography>
-    </Grid>
+    <Box className={classes.homeRoot}>
+      {/* <Container>
+        <Typography variant="h4">Trail Bikes</Typography>
+      </Container> */}
+      <SocialBox />
+      <div className={classes.productListWrapper}>
+        {products.map((obj, i) => {
+          return <Product {...obj} />;
+        })}
+      </div>
+    </Box>
   );
 };
 
