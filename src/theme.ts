@@ -34,7 +34,7 @@ const themeProvider = createMuiTheme({
       blue1: "#414a72",
       orange: "#ff5e57",
     },
-    primary: { main: "#222326" },
+    primary: { main: "#392d40" },
     secondary: { main: "#392d40", contrastText: "#ececec" },
     text: {
       secondary: "white",

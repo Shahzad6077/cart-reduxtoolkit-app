@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     display: "flex",
     overflow: "hidden",
-    overflowX: "scroll",
+    overflowX: "hidden",
     padding: "0px 2rem",
     scrollBehavior: "smooth",
     "&> div": {

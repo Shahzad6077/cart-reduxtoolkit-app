@@ -5,7 +5,12 @@ import { Product, SocialBox, ControlArrow } from "./../../Components";
 import useStyles from "./styles";
 import { RootState } from "../../Store/rootReducer";
 import { useMotionValue } from "framer-motion";
-const Home: FC = () => {
+
+type Props = {
+  openSnackbar: () => void;
+};
+
+const Home: FC<Props> = ({ openSnackbar }) => {
   const scrollX = useMotionValue(0);
   const scrollWrapperRef = useRef<HTMLDivElement | any>();
   const classes = useStyles();
@@ -26,7 +31,7 @@ const Home: FC = () => {
         ref={scrollWrapperRef}
       >
         {products.map((obj, i) => {
-          return <Product key={i} {...obj} />;
+          return <Product key={i} {...obj} openSnackbar={openSnackbar} />;
         })}
       </div>
     </Box>

@@ -11,6 +11,14 @@ export interface ProductItem {
   colors: ColorPlatte[];
   price: number;
 }
+export const DEFAULT_PRODUCT_ITEM: ProductItem = {
+  id: "",
+  imageUrl: [],
+  title: "",
+  description: "",
+  colors: [],
+  price: 0,
+};
 
 export interface ProductsSliceState {
   products: ProductItem[];

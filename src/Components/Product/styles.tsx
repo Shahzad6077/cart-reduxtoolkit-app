@@ -40,14 +40,5 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0,
     backgroundColor: "transparent",
   },
-
-  cartOption: {
-    width: "60%",
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: "-20px",
-    marginTop: "20px",
-    opacity: 0,
-  },
 }));
 export default useStyles;

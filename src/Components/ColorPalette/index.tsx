@@ -1,17 +1,23 @@
 import { FC } from "react";
 import useStyles from "./styles";
-import { ColorPlatte } from "./../../Types/store";
+import { ColorPlatte } from "../../Types/store";
 
 type Props = {
   colors: ColorPlatte[];
-  activeIndex: number;
-  onClick: (index: number) => void;
+  activeIndex?: number;
+  onClick?: (index: number) => void;
+  overrideClass?: string;
 };
 
-const ColorPlatlte: FC<Props> = ({ colors, activeIndex, onClick }) => {
+const ColorPalette: FC<Props> = ({
+  colors,
+  activeIndex = 0,
+  onClick,
+  overrideClass,
+}) => {
   const classes = useStyles();
   return (
-    <div className={classes.pallateWrapper}>
+    <div className={classes.pallateWrapper + " " + overrideClass}>
       {colors.map((obj, i) => {
         return (
           <div
@@ -29,7 +35,10 @@ const ColorPlatlte: FC<Props> = ({ colors, activeIndex, onClick }) => {
               style={{
                 background: `linear-gradient(0deg, ${obj.primary} 50%, ${obj.secondary} 50%)`,
               }}
-              onClick={() => onClick(i)}
+              onClick={(e: React.MouseEvent) => {
+                e.stopPropagation();
+                onClick && onClick(i);
+              }}
             />
           </div>
         );
@@ -38,4 +47,4 @@ const ColorPlatlte: FC<Props> = ({ colors, activeIndex, onClick }) => {
   );
 };
 
-export default ColorPlatlte;
+export default ColorPalette;

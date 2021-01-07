@@ -29,6 +29,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push(item);
       }
+      state.totalQuantity++;
     },
     removeCarItem: (state, action: PayloadAction<string>) => {
       const cartItemId = action.payload;
@@ -37,7 +38,7 @@ const cartSlice = createSlice({
       );
       if (item) {
         let itemsShallowArr: CartItem[];
-        const hasQuantityGreaterThan0: boolean = item.quantity > 0;
+        const hasQuantityGreaterThan0: boolean = item.quantity > 1;
         if (hasQuantityGreaterThan0) {
           itemsShallowArr = state.items.map((obj) => {
             if (obj.cartItemId === cartItemId) {

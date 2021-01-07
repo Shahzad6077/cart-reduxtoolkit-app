@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     padding: "1rem 1.1rem",
     display: "flex",
+    cursor: "pointer",
+    outline: "none",
     "& svg": {
       width: "24px",
       height: "24px",
@@ -30,11 +32,9 @@ const CartButton: FC<CartButtonProps> = ({ children, onClick, label }) => {
   const classes = useStyles();
   return (
     <motion.button
-      layout
-      layoutId="cart-btn"
       className={classes.root}
       onClick={(e: React.MouseEvent) => {
-        e.preventDefault();
+        e.stopPropagation();
         onClick();
       }}
     >
