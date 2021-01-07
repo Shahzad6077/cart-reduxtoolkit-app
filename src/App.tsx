@@ -9,9 +9,9 @@ function App() {
   const [isProductDetailPage, setIsProductDetailPage] = useState<boolean>(
     false
   );
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(true);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
-  const [isSnackbarOpen, setSnackbarOpen] = useState<boolean>(false);
+  const [isSnackbarOpen, setSnackbarOpen] = useState<boolean | string>(false);
   const cartHandler = () => {
     setIsCartOpen((p) => !p);
   };
@@ -22,7 +22,11 @@ function App() {
     setSnackbarOpen(false);
   };
   const openSnackbar = () => {
-    setSnackbarOpen(true);
+    setSnackbarOpen("Item Added to cart.");
+  };
+  const openSnackbarCheckout = () => {
+    cartHandler();
+    setSnackbarOpen("Thanks for purchasing.");
   };
   return (
     <div className="App">
@@ -30,7 +34,11 @@ function App() {
         isProductDetailPage={isProductDetailPage}
         cartHandler={cartHandler}
       />
-      <CartDrawer isCartOpen={isCartOpen} onClose={cartHandler} />
+      <CartDrawer
+        isCartOpen={isCartOpen}
+        onClose={cartHandler}
+        onCheckoutMsg={openSnackbarCheckout}
+      />
       <Box className="layoutwrapper">
         <AnimateSharedLayout>
           <Routes>
@@ -52,10 +60,10 @@ function App() {
       </Box>
       <SocialBox />
       <Snackbar
-        open={isSnackbarOpen}
+        open={!!isSnackbarOpen}
         autoHideDuration={2000}
         onClose={handleSnackbar}
-        message="Item Added to cart."
+        message={!!isSnackbarOpen ? isSnackbarOpen : ""}
       />
     </div>
   );
