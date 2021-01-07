@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& button": {
       padding: 6,
+      color: "#FF8E53",
     },
   },
   activeLink: {
