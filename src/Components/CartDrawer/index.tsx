@@ -26,8 +26,19 @@ const CartDrawer: FC<Props> = ({ isCartOpen, onClose, onCheckoutMsg }) => {
   };
   return (
     <Fragment>
-      <Drawer anchor="right" open={isCartOpen} onClose={onClose}>
-        <Box width={380} display="flex" flexDirection="column" flexGrow={1}>
+      <Drawer
+        anchor="right"
+        open={isCartOpen}
+        onClose={onClose}
+        style={{ overflow: "hidden" }}
+      >
+        <Box
+          width={380}
+          display="flex"
+          flexDirection="column"
+          flexGrow={1}
+          style={{ height: "100vh" }}
+        >
           <Typography
             variant="body2"
             align="center"

@@ -55,7 +55,7 @@ const cartSlice = createSlice({
         }
         const totalAmount = state.totalAmount - item.price;
         const totalQuantity = state.totalQuantity - 1;
-        return { ...state, items: itemsShallowArr, totalAmount };
+        return { ...state, items: itemsShallowArr, totalAmount, totalQuantity };
       } else {
         return state;
       }
