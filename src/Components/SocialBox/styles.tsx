@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.customColors?.blue1,
     },
     "& svg": {
-      fill: "#3c3c3d",
-      width: "20px",
-      height: "20px",
+      // fill: "#3c3c3d",
+      width: "26px",
+      height: "26px",
       cursor: "pointer",
       marginLeft: "0.6rem",
     },

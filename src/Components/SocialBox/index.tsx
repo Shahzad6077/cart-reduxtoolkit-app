@@ -1,9 +1,6 @@
 import { Box, Typography } from "@material-ui/core";
 import React, { FC } from "react";
 import useStyles from "./styles";
-import { ReactComponent as FbIcon } from "./../../Assets/facebook.svg";
-import { ReactComponent as TwitterIcon } from "./../../Assets/twitter.svg";
-import { ReactComponent as InstaIcon } from "./../../Assets/instagram.svg";
 import { ReactComponent as GithubIcon } from "./../../Assets/github.svg";
 type Props = {};
 
