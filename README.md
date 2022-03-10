@@ -2,7 +2,8 @@
 
 ## `Check the below link to visit the app`
 
-Open [cart-shahzad.surge.sh](https://cart-shahzad.surge.sh/) to view it in the browser.
+[App-Link](https://cart-reduxtoolkit-app.pages.dev/)
+[cart-shahzad.surge.sh](https://cart-shahzad.surge.sh/)
 
 ## Design Inspiration by
 
