@@ -2,7 +2,7 @@
 
 ## `Check the below link to visit the app`
 
-[App-Link](https://cart-reduxtoolkit-app.pages.dev/)
+[App-Link](https://cart-reduxtoolkit-app.pages.dev/)<br/>
 [cart-shahzad.surge.sh](https://cart-shahzad.surge.sh/)
 
 ## Design Inspiration by
